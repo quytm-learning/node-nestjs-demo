@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
+import { Body, Controller, Get, Header, Logger, Post, Res } from '@nestjs/common';
 import { PhotoService } from './photo.service';
 import { Photo } from './photo.entity';
 
@@ -10,17 +10,21 @@ export class PhotoController {
   }
 
   @Get('/')
-  getAllPhotos() {
+  @Header('Content-Type', 'application/json')
+  getAllPhotos(@Res() res) {
     this.photoService.findAll()
       .then(photos => {
-        return photos;
+        this.logger.log(JSON.stringify(photos));
+        res.json(photos);
+        // return photos;
       })
       .catch(err => {
-        return err;
+        // return err;
       });
   }
 
   @Post('/')
+  @Header('Content-Type', 'application/json')
   uploadNewPhotos(@Body() photo: Photo) {
     this.photoService.insertPhoto(photo)
       .then(newPhoto => {
