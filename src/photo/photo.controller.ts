@@ -5,26 +5,17 @@ import { Photo } from './photo.entity';
 @Controller('photos')
 export class PhotoController {
 
-  constructor(private photoService: PhotoService,
-              private logger: Logger) {
+  private logger = new Logger(PhotoController.name, false);
+
+  constructor(private photoService: PhotoService) {
   }
 
   @Get('/')
-  @Header('Content-Type', 'application/json')
-  getAllPhotos(@Res() res) {
-    this.photoService.findAll()
-      .then(photos => {
-        this.logger.log(JSON.stringify(photos));
-        res.json(photos);
-        // return photos;
-      })
-      .catch(err => {
-        // return err;
-      });
+  getAllPhotos() {
+    return this.photoService.findAll();
   }
 
   @Post('/')
-  @Header('Content-Type', 'application/json')
   uploadNewPhotos(@Body() photo: Photo) {
     this.photoService.insertPhoto(photo)
       .then(newPhoto => {
