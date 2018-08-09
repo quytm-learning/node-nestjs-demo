@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { RoomsService } from './rooms.service';
 import { Room } from './room.entity';
+import * as _ from 'lodash';
 
 @Controller('/api/rooms')
 export class RoomsController {
@@ -9,8 +10,12 @@ export class RoomsController {
   }
 
   @Get('/')
-  getAllRooms() {
-    return this.roomService.findAll();
+  getAllRooms(@Query('userId') userId) {
+    if (_.isEmpty(userId)) {
+      return this.roomService.findAll();
+    } else {
+      return this.roomService.findAllRoomByUserId(userId);
+    }
   }
 
   @Post('/')

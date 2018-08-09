@@ -5,4 +5,5 @@ import { MessagesModule } from './messages/messages.module';
 @Module({
   imports: [RoomsModule, MessagesModule],
 })
-export class ChattingModule {}
+export class ChattingModule {
+}

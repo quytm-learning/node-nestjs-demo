@@ -1,8 +1,9 @@
 import {
   Column,
-  Entity,
+  Entity, JoinColumn, ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { User } from '../../users/user.entity';
 
 @Entity()
 export class Room {
@@ -20,5 +21,17 @@ export class Room {
     default: () => 'NOW()',
   })
   createAt: Date;
+
+  // @ManyToOne(type => User)
+  // @JoinColumn(
+  //   {
+  //     name: 'leftUser',
+  //     referencedColumnName: 'id',
+  //   },
+  // )
+  // left: User;
+
+  @ManyToOne(type => User, user => user.id)
+  left: User;
 
 }

@@ -12,6 +12,7 @@ import { DatabaseModule } from '../../database/database.module';
     Logger,
   ],
   controllers: [RoomsController],
+  exports: [RoomsService],
 })
 export class RoomsModule {
 }
