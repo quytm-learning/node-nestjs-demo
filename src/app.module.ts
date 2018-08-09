@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { DatabaseModule } from './database/database.module';
 import { PhotoModule } from './photo/photo.module';
 import { SocketModule } from './socket/socket.module';
+import { ChattingModule } from './chatting/chatting.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { SocketModule } from './socket/socket.module';
     DatabaseModule,
     PhotoModule,
     SocketModule,
+    ChattingModule,
   ],
   controllers: [
     AppController,

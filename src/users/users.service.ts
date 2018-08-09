@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
-import { async } from 'rxjs/internal/scheduler/async';
 
 @Injectable()
 export class UsersService {
